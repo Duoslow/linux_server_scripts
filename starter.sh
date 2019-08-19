@@ -69,17 +69,17 @@ display_output 6 60 "kurulum tamamlandı"
 }
 
 function home(){
-	sudo apt-get update 
-sudo apt-get upgrade -y
-sudo apt-get -y install git tmux aria2 
+	sudo apt-get update -qq > /dev/null
+sudo apt-get upgrade -y -qq > /dev/null
+sudo apt-get -y install git tmux aria2  -qq > /dev/null
 # ---------------------------------------------------------------------------------------------------------------------
 # WEB SERVER
 # ---------------------------------------------------------------------------------------------------------------------
 sudo apt-get -y install apache2 php7.0 libapache2-mod-php7.0 php7.0-mcrypt php7.0-curl php7.0-mysql php7.0-gd php7.0-cli php7.0-dev mcrypt p7zip-full libav-tools python3-pip php7.0-mbstring -qq > /dev/null
-sudo ufw allow 'Apache'
-sudo chown -R $SUDO_USER:www-data /var/www/html/
-sudo chmod -R 770 /var/www/html/
-sudo mkdir -p /root/.config/aria2
+sudo ufw allow 'Apache' >/dev/null
+sudo chown -R $SUDO_USER:www-data /var/www/html/ >/dev/null
+sudo chmod -R 770 /var/www/html/ >/dev/null
+sudo mkdir -p /root/.config/aria2 >/dev/null
 # ---------------------------------------------------------------------------------------------------------------------
 #aria2 config oluşturma
 cat <<EOF>>/root/.config/aria2/aria2.conf
@@ -116,9 +116,9 @@ WantedBy=default.target
 EOF
 # ---------------------------------------------------------------------------------------------------------------------
 #izinler
-sudo chmod 777 /root/.config/aria2/aria2.conf
-sudo chmod 777 /usr/bin/tmuxsc.sh
-sudo chmod 777 /etc/systemd/system/tmuxaria2.service
+sudo chmod 777 /root/.config/aria2/aria2.conf >/dev/null
+sudo chmod 777 /usr/bin/tmuxsc.sh >/dev/null
+sudo chmod 777 /etc/systemd/system/tmuxaria2.service >/dev/null
 # ---------------------------------------------------------------------------------------------------------------------
 # KULLANICI ONAYLARI
 # ---------------------------------------------------------------------------------------------------------------------
@@ -159,7 +159,7 @@ done
 
 sambaconf()
 {
-sudo apt-get -y install samba
+sudo apt-get -y install samba -qq >/dev/null
 
 cat <<EOF>>/etc/samba/smb.conf
 [home-nas]
