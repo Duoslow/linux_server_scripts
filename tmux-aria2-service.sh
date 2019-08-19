@@ -26,7 +26,7 @@ cat <<EOF>/etc/systemd/system/tmuxaria2.service
 [Unit]
 Description=tmuxariascript
 Documentation=none
-After=network.target local-fs.target
+
 
 [Service]
 Type=forking
