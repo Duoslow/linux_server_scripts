@@ -9,16 +9,12 @@ function display_output(){
 	local t=${3-Output} 	# box title 
 	dialog --backtitle "starter script by ST4RDUST" --title "${t}" --clear --msgbox "$(<$OUTPUT)" ${h} ${w}
 }
-#
-# Purpose - display current system date & time
-#
 function web(){
 	    
 echo percentage | dialog --gauge "text" height width percent
 #basit kurulumlar
 counter=0
 (
-# set infinite while loop
 while :
 do
 cat <<EOF
@@ -27,10 +23,8 @@ $counter
 Kuruluma başlanıyor ( $counter%):
 XXX
 EOF
-# increase counter by 10
 (( counter+=1 ))
 [ $counter -eq 10 ] && break
-# delay it a specified amount of time i.e 1 sec
 sleep 0.2
 done
 ) |
@@ -72,16 +66,12 @@ sudo mkdir -p /root/.config/aria2
 echo "100" | dialog --gauge "son düzenlemeler yapılıyor..." 10 70 0
 display_output 6 60 "kurulum tamamlandı"
 }
-#
-# Purpose - display a calendar
-#
+
 function home(){
 	echo "$ROOT_USER" >$OUTPUT
 	display_output 13 25 "Home Server"
 }
-#
-# set infinite loop
-#
+
 function basic(){
 	echo "$ROOT_USER" >$OUTPUT
 	display_output 13 25 "Basic Server"
@@ -95,8 +85,8 @@ dialog --clear  --help-button --backtitle "starter script by ST4RDUST" \
 --menu "Yukarı ve Aşağı tuşlarını kullanarak menü yü kontrol edebilirsin \n\
 Sağ ve Sol tuşlarını kullanarak alt menü yü kontrol edebilirsin \n\
 İşlem Seç" 15 50 4 \
-webserver "Web Server" \
-homeserver "Home Server" \
+webserver "Web Server Kurulumu(bind9,apache,vb)" \
+homeserver "Home Server(Simple download server with nas)" \
 basicserver "Basic start" \
 Exit "Çıkış" 2>"${INPUT}"
 
