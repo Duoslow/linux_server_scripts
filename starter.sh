@@ -84,7 +84,7 @@ dialog --clear  --help-button --backtitle "starter script by ST4RDUST" \
 --title "[ S T A R T E R M E N U ]" \
 --menu "Yukarı ve Aşağı tuşlarını kullanarak menü yü kontrol edebilirsin \n\
 Sağ ve Sol tuşlarını kullanarak alt menü yü kontrol edebilirsin \n\
-İşlem Seç" 15 50 4 \
+İşlem Seç" 15 50 6 \
 webserver "Web Server Kurulumu(bind9,apache,vb)" \
 homeserver "Home Server(Simple download server with nas)" \
 basicserver "Basic start" \
