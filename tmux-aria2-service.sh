@@ -27,7 +27,6 @@ cat <<EOF>/etc/systemd/system/tmuxaria2.service
 Description=tmuxariascript
 Documentation=none
 
-
 [Service]
 Type=forking
 KillMode=none
