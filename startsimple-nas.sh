@@ -33,7 +33,7 @@ sudo chmod  777 /root/.config/aria2/aria2.conf
 sudo -s cat <<EOF>/root/.config/aria2/aria2.conf
 continue=true
 daemon=true
-dir=/home/$SUDO_USER/Downloads/
+dir=/home/$USER/Downloads/
 max-concurrent-downloads=5
 seed-ratio=0
 max-connection-per-server=16
