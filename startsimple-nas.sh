@@ -21,6 +21,12 @@ sudo ufw allow 'Apache'
 sudo chown -R $SUDO_USER:www-data /var/www/html/
 sudo chmod -R 770 /var/www/html/
 sudo mkdir -p /root/.config/aria2
+sudo touch /usr/bin/tmuxsc.sh
+sudo touch /etc/systemd/system/tmuxaria2.service
+sudo touch /root/.config/aria2/aria2.conf
+sudo chmod -R 770 /usr/bin/tmuxsc.sh
+sudo chmod -R 770 /etc/systemd/system/tmuxaria2.service
+sudo chmod -R 770 /root/.config/aria2/aria2.conf
 # ---------------------------------------------------------------------------------------------------------------------
 #aria2 config oluşturma
 sudo cat <<EOF>>/root/.config/aria2/aria2.conf
