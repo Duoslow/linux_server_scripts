@@ -16,7 +16,7 @@ sudo apt-get -y install git tmux aria2 -qq > /dev/null
 # WEB SERVER
 # ---------------------------------------------------------------------------------------------------------------------
 sudo apt-get -y install apache2 python3-pip -qq > /dev/null
-sudo apt-get -y php7.0 libapache2-mod-php7.0 php7.0-mcrypt php7.0-curl php7.0-mysql php7.0-gd php7.0-cli php7.0-dev mcrypt p7zip-full libav-tools php7.0-mbstring -qq > /dev/null
+sudo apt-get -y install php7.0 libapache2-mod-php7.0 php7.0-mcrypt php7.0-curl php7.0-mysql php7.0-gd php7.0-cli php7.0-dev mcrypt p7zip-full libav-tools php7.0-mbstring -qq > /dev/null
 sudo ufw allow 'Apache'
 sudo chown -R $SUDO_USER:www-data /var/www/html/
 sudo chmod -R 770 /var/www/html/
