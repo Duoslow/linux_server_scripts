@@ -29,7 +29,7 @@ sudo chmod -R 777 /etc/systemd/system/tmuxaria2.service
 sudo chmod -R 777 /root/.config/aria2/aria2.conf
 # ---------------------------------------------------------------------------------------------------------------------
 #aria2 config oluşturma
-sudo cat <<EOF>>/root/.config/aria2/aria2.conf
+sudo -s cat <<EOF>>/root/.config/aria2/aria2.conf
 continue=true
 daemon=true
 dir=/home/$SUDO_USER/Downloads/
@@ -40,13 +40,13 @@ split=16
 EOF
 # ---------------------------------------------------------------------------------------------------------------------
 #aria2 tmux scripti
-sudo cat <<EOF>/usr/bin/tmuxsc.sh
+sudo -s cat <<EOF>/usr/bin/tmuxsc.sh
 #!/bin/bash
 tmux new-session -d -s sa31 'aria2c --enable-rpc --rpc-listen-all --continue=true --force-save=true'
 EOF
 # ---------------------------------------------------------------------------------------------------------------------
 #aria2 tmux service olusturma
-sudo cat <<EOF>/etc/systemd/system/tmuxaria2.service
+sudo -s cat <<EOF>/etc/systemd/system/tmuxaria2.service
 [Unit]
 Description=tmuxariascript
 Documentation=none
