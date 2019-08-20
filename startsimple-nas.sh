@@ -29,7 +29,7 @@ sudo chmod -R 777 /etc/systemd/system/tmuxaria2.service
 sudo chmod -R 777 /root/.config/aria2/aria2.conf
 # ---------------------------------------------------------------------------------------------------------------------
 #aria2 config oluşturma
-sudo -s cat <<EOF>>/root/.config/aria2/aria2.conf
+sudo -s cat <<EOF>/root/.config/aria2/aria2.conf
 continue=true
 daemon=true
 dir=/home/$SUDO_USER/Downloads/
@@ -50,12 +50,13 @@ sudo -s cat <<EOF>/etc/systemd/system/tmuxaria2.service
 [Unit]
 Description=tmuxariascript
 Documentation=none
-After=network.target local-fs.target
+
 [Service]
 Type=forking
 KillMode=none
 User=root
 ExecStart=/usr/bin/tmuxsc.sh
+
 [Install]
 WantedBy=default.target
 EOF
