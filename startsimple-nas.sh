@@ -8,7 +8,7 @@ then
 fi
 
 #basit kurulumlar
-sudo apt-add-repository ppa:ondrej/php -qq > /dev/null
+sudo apt-add-repository ppa:ondrej/php  > /dev/null
 sudo apt-get update  -qq > /dev/null
 sudo apt-get upgrade -y -qq > /dev/null
 sudo apt-get -y install git tmux aria2 -qq > /dev/null
