@@ -67,35 +67,6 @@ sudo chmod 777 /etc/systemd/system/tmuxaria2.service
 # ---------------------------------------------------------------------------------------------------------------------
 # KULLANICI ONAYLARI
 # ---------------------------------------------------------------------------------------------------------------------
-#Netdata
-while true; do
-    read -p "Netdata kurulsun mu ?" yn
-    case $yn in
-        [Yy]* ) bash <(curl -Ss https://my-netdata.io/kickstart.sh) --non-interactive; break;;
-        [Nn]* ) echo "Netdata Kurulmuyacak!" ; break ;;
-        * ) echo "Y veya N ile cevap ver";;
-    esac
-done
-# ---------------------------------------------------------------------------------------------------------------------
-#Jellyfin
-while true; do
-    read -p "Jellyfin kurulsun mu ?" yn
-    case $yn in
-        [Yy]* ) eval "jelly"; break;;
-        [Nn]* ) echo "Jellyfin Kurulmuyacak!" ; break ;;
-        * ) echo "Y veya N ile cevap ver";;
-    esac
-done
-# ---------------------------------------------------------------------------------------------------------------------
-#Samba Kurulumu
-while true; do
-    read -p "samba kurulsun mu ?" yn
-    case $yn in
-        [Yy]* ) eval "sambaconf" ; break;;
-        [Nn]* ) echo "samba Kurulmuyacak!" ; break ;;
-        * ) echo "Y veya N ile cevap ver";;
-    esac
-done
 # ---------------------------------------------------------------------------------------------------------------------
 #FONKSİYONLAR
 # ---------------------------------------------------------------------------------------------------------------------
@@ -139,3 +110,32 @@ sudo apt install jellyfin -y
 sudo systemctl restart jellyfin
 }
 # ---------------------------------------------------------------------------------------------------------------------
+#Netdata
+while true; do
+    read -p "Netdata kurulsun mu ?" yn
+    case $yn in
+        [Yy]* ) bash <(curl -Ss https://my-netdata.io/kickstart.sh) --non-interactive; break;;
+        [Nn]* ) echo "Netdata Kurulmuyacak!" ; break ;;
+        * ) echo "Y veya N ile cevap ver";;
+    esac
+done
+# ---------------------------------------------------------------------------------------------------------------------
+#Jellyfin
+while true; do
+    read -p "Jellyfin kurulsun mu ?" yn
+    case $yn in
+        [Yy]* ) eval "jelly ."; break;;
+        [Nn]* ) echo "Jellyfin Kurulmuyacak!" ; break ;;
+        * ) echo "Y veya N ile cevap ver";;
+    esac
+done
+# ---------------------------------------------------------------------------------------------------------------------
+#Samba Kurulumu
+while true; do
+    read -p "samba kurulsun mu ?" yn
+    case $yn in
+        [Yy]* ) eval "sambaconf ." ; break;;
+        [Nn]* ) echo "samba Kurulmuyacak!" ; break ;;
+        * ) echo "Y veya N ile cevap ver";;
+    esac
+done
