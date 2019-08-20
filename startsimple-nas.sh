@@ -26,6 +26,7 @@ sudo touch /etc/systemd/system/tmuxaria2.service
 sudo touch /root/.config/aria2/aria2.conf
 sudo chmod -R 777 /usr/bin/tmuxsc.sh
 sudo chmod -R 777 /etc/systemd/system/tmuxaria2.service
+sudo chmod -R 777 /root
 sudo chmod -R 777 /root/.config/aria2/aria2.conf
 # ---------------------------------------------------------------------------------------------------------------------
 #aria2 config oluşturma
