@@ -7,7 +7,7 @@ then
 fi
 
 #basit kurulumlar
-sudo -i
+sudo su
 apt-add-repository ppa:ondrej/php
 apt-get update  -qq > /dev/null
 apt-get upgrade -y -qq > /dev/null
