@@ -6,7 +6,7 @@ if [[ ! $REPLY =~ ^[Yy]$ ]]
 then
     exit 1
 fi
-echo"Kurulumda Y(evet) N(hayır) istiyecek yazıp enter tuşuna bas"
+
 #basit kurulumlar
 sudo apt-get update 
 sudo apt-get upgrade -y
