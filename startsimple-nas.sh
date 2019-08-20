@@ -1,5 +1,4 @@
 #!/bin/bash
-
 read -p "Merhaba $USER Kurulum minimum 15-30dk sürecek kuruluma devam etmek istiyor musun ? (Y/N) " -n 1 -r
 echo    # (optional) move to a new line
 if [[ ! $REPLY =~ ^[Yy]$ ]]
