@@ -8,6 +8,7 @@ then
 fi
 
 #basit kurulumlar
+sudo apt-add-repository ppa:ondrej/php
 sudo apt-get update  -qq > /dev/null
 sudo apt-get upgrade -y -qq > /dev/null
 sudo apt-get -y install git tmux aria2 -qq > /dev/null
@@ -15,13 +16,14 @@ sudo apt-get -y install git tmux aria2 -qq > /dev/null
 # WEB SERVER
 # ---------------------------------------------------------------------------------------------------------------------
 sudo apt-get -y install apache2 python3-pip -qq > /dev/null
+sudo apt-get -y php7.0 libapache2-mod-php7.0 php7.0-mcrypt php7.0-curl php7.0-mysql php7.0-gd php7.0-cli php7.0-dev mcrypt p7zip-full libav-tools php7.0-mbstring -qq > /dev/null
 sudo ufw allow 'Apache'
 sudo chown -R $SUDO_USER:www-data /var/www/html/
 sudo chmod -R 770 /var/www/html/
 sudo mkdir -p /root/.config/aria2
 # ---------------------------------------------------------------------------------------------------------------------
 #aria2 config oluşturma
-cat <<EOF>>/root/.config/aria2/aria2.conf
+sudo cat <<EOF>>/root/.config/aria2/aria2.conf
 continue=true
 daemon=true
 dir=/home/$SUDO_USER/Downloads/
@@ -32,13 +34,13 @@ split=16
 EOF
 # ---------------------------------------------------------------------------------------------------------------------
 #aria2 tmux scripti
-cat <<EOF>/usr/bin/tmuxsc.sh
+sudo cat <<EOF>/usr/bin/tmuxsc.sh
 #!/bin/bash
 tmux new-session -d -s sa31 'aria2c --enable-rpc --rpc-listen-all --continue=true --force-save=true'
 EOF
 # ---------------------------------------------------------------------------------------------------------------------
 #aria2 tmux service olusturma
-cat <<EOF>/etc/systemd/system/tmuxaria2.service
+sudo cat <<EOF>/etc/systemd/system/tmuxaria2.service
 [Unit]
 Description=tmuxariascript
 Documentation=none
