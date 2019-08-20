@@ -18,4 +18,4 @@ tar -zxvf asciiquarium.tar.gz
 cd asciiquarium_1.1
 sudo cp asciiquarium /usr/local/bin/
 sudo chmod 0755 /usr/local/bin/asciiquarium
-echo "asciiquarium installed use:asciiquarium"
+echo "\e[96masciiquarium installed use:asciiquarium"
