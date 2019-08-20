@@ -7,29 +7,29 @@ then
 fi
 
 #basit kurulumlar
-sudo su
-apt-add-repository ppa:ondrej/php
-apt-get update  -qq > /dev/null
-apt-get upgrade -y -qq > /dev/null
-apt-get -y install git tmux aria2 -qq > /dev/null
+
+sudo apt-add-repository ppa:ondrej/php
+sudo apt-get update  -qq > /dev/null
+sudo apt-get upgrade -y -qq > /dev/null
+sudo apt-get -y install git tmux aria2 -qq > /dev/null
 # ---------------------------------------------------------------------------------------------------------------------
 # WEB SERVER
 # ---------------------------------------------------------------------------------------------------------------------
-apt-get -y install apache2 python3-pip -qq > /dev/null
-apt-get -y install php7.0 libapache2-mod-php7.0 php7.0-mcrypt php7.0-curl php7.0-mysql php7.0-gd php7.0-cli php7.0-dev mcrypt p7zip-full php7.0-mbstring -qq > /dev/null
-ufw allow 'Apache'
-chown -R $SUDO_USER:www-data /var/www/html/
-chmod -R 770 /var/www/html/
-mkdir -p /root/.config/aria2
-touch /usr/bin/tmuxsc.sh
-touch /etc/systemd/system/tmuxaria2.service
-touch /root/.config/aria2/aria2.conf
-chmod -R 770 /usr/bin/tmuxsc.sh
-chmod -R 770 /etc/systemd/system/tmuxaria2.service
-chmod -R 770 /root/.config/aria2/aria2.conf
+sudo apt-get -y install apache2 python3-pip -qq > /dev/null
+sudo apt-get -y install php7.0 libapache2-mod-php7.0 php7.0-mcrypt php7.0-curl php7.0-mysql php7.0-gd php7.0-cli php7.0-dev mcrypt p7zip-full php7.0-mbstring -qq > /dev/null
+sudo ufw allow 'Apache'
+sudo chown -R $SUDO_USER:www-data /var/www/html/
+sudo chmod -R 770 /var/www/html/
+sudo mkdir -p /root/.config/aria2
+sudo touch /usr/bin/tmuxsc.sh
+sudo touch /etc/systemd/system/tmuxaria2.service
+sudo touch /root/.config/aria2/aria2.conf
+sudo chmod -R 770 /usr/bin/tmuxsc.sh
+sudo chmod -R 770 /etc/systemd/system/tmuxaria2.service
+sudo chmod -R 770 /root/.config/aria2/aria2.conf
 # ---------------------------------------------------------------------------------------------------------------------
 #aria2 config oluşturma
-cat <<EOF>>/root/.config/aria2/aria2.conf
+sudo cat <<EOF>>/root/.config/aria2/aria2.conf
 continue=true
 daemon=true
 dir=/home/$SUDO_USER/Downloads/
@@ -40,13 +40,13 @@ split=16
 EOF
 # ---------------------------------------------------------------------------------------------------------------------
 #aria2 tmux scripti
-cat <<EOF>/usr/bin/tmuxsc.sh
+sudo cat <<EOF>/usr/bin/tmuxsc.sh
 #!/bin/bash
 tmux new-session -d -s sa31 'aria2c --enable-rpc --rpc-listen-all --continue=true --force-save=true'
 EOF
 # ---------------------------------------------------------------------------------------------------------------------
 #aria2 tmux service olusturma
-cat <<EOF>/etc/systemd/system/tmuxaria2.service
+sudo cat <<EOF>/etc/systemd/system/tmuxaria2.service
 [Unit]
 Description=tmuxariascript
 Documentation=none
@@ -61,9 +61,9 @@ WantedBy=default.target
 EOF
 # ---------------------------------------------------------------------------------------------------------------------
 #izinler
-chmod 777 /root/.config/aria2/aria2.conf
-chmod 777 /usr/bin/tmuxsc.sh
-chmod 777 /etc/systemd/system/tmuxaria2.service
+sudo chmod 777 /root/.config/aria2/aria2.conf
+sudo chmod 777 /usr/bin/tmuxsc.sh
+sudo chmod 777 /etc/systemd/system/tmuxaria2.service
 # ---------------------------------------------------------------------------------------------------------------------
 # KULLANICI ONAYLARI
 # ---------------------------------------------------------------------------------------------------------------------
@@ -101,15 +101,15 @@ done
 # ---------------------------------------------------------------------------------------------------------------------
 sambaconf()
 {
-apt-get -y install samba
-cat <<EOF>>/etc/samba/smb.conf
+sudo apt-get -y install samba
+sudo cat <<EOF>>/etc/samba/smb.conf
 [home-nas]
     comment = $SUDO_USER' NAS
     path = /home/$SUDO_USER/Downloads/
     read only = no
     browsable = yes
 EOF
-service smbd restart
+sudo service smbd restart
 while [ "$stat" != "Active: active" ];
 do
 stat="$(systemctl status smbd --output=short-monotonic | grep -Po "Active: active")"
@@ -129,11 +129,11 @@ echo -e "samba \e[32mkuruldu\e[39m buradan(\e[91m$ip/home-nas\e[39m)bağlanabili
 #jellyfin
 jelly()
 {
-apt install apt-transport-https -y
-add-apt-repository universe -y
-wget -O - https://repo.jellyfin.org/ubuntu/jellyfin_team.gpg.key | apt-key add -
-echo "deb [arch=$( dpkg --print-architecture )] https://repo.jellyfin.org/ubuntu $( lsb_release -c -s ) main" | tee /etc/apt/sources.list.d/jellyfin.list
-apt update
-apt install jellyfin -y
-systemctl restart jellyfin
+sudo apt install apt-transport-https -y
+sudo add-apt-repository universe -y
+sudo wget -O - https://repo.jellyfin.org/ubuntu/jellyfin_team.gpg.key | apt-key add -
+sudo echo "deb [arch=$( dpkg --print-architecture )] https://repo.jellyfin.org/ubuntu $( lsb_release -c -s ) main" | tee /etc/apt/sources.list.d/jellyfin.list
+sudo apt update
+sudo apt install jellyfin -y
+sudo systemctl restart jellyfin
 }
