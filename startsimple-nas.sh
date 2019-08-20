@@ -79,8 +79,8 @@ sudo chmod 777 /etc/samba
 sudo chmod 777 /etc/samba/smb.conf
 sudo -s cat <<EOF>>/etc/samba/smb.conf
 [home-nas]
-    comment = $SUDO_USER' NAS
-    path = /home/$SUDO_USER/Downloads/
+    comment = $USER' NAS
+    path = /home/$USER/Downloads/
     read only = no
     browsable = yes
 EOF
