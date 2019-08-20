@@ -8,7 +8,7 @@ fi
 
 #basit kurulumlar
 
-sudo apt-add-repository ppa:ondrej/php
+sudo apt-add-repository ppa:ondrej/php > /dev/null
 sudo apt-get update  -qq > /dev/null
 sudo apt-get upgrade -y -qq > /dev/null
 sudo apt-get -y install git tmux aria2 -qq > /dev/null
@@ -99,7 +99,7 @@ done
 # ---------------------------------------------------------------------------------------------------------------------
 #FONKSİYONLAR
 # ---------------------------------------------------------------------------------------------------------------------
-sambaconf()
+function sambaconf()
 {
 sudo apt-get -y install samba
 sudo cat <<EOF>>/etc/samba/smb.conf
@@ -127,7 +127,7 @@ echo -e "samba \e[32mkuruldu\e[39m buradan(\e[91m$ip/home-nas\e[39m)bağlanabili
 }
 # ---------------------------------------------------------------------------------------------------------------------
 #jellyfin
-jelly()
+function jelly()
 {
 sudo apt install apt-transport-https -y
 sudo add-apt-repository universe -y
