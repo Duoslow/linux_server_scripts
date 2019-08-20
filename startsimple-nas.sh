@@ -81,7 +81,7 @@ done
 while true; do
     read -p "Jellyfin kurulsun mu ?" yn
     case $yn in
-        [Yy]* ) echo "jelly" | bash ; break;;
+        [Yy]* ) jelly | bash ; break;;
         [Nn]* ) echo "Jellyfin Kurulmuyacak!" ; break ;;
         * ) echo "Y veya N ile cevap ver";;
     esac
@@ -91,7 +91,7 @@ done
 while true; do
     read -p "samba kurulsun mu ?" yn
     case $yn in
-        [Yy]* ) echo "sambaconf" | bash ; break;;
+        [Yy]* ) sambaconf | bash ; break;;
         [Nn]* ) echo "samba Kurulmuyacak!" ; break ;;
         * ) echo "Y veya N ile cevap ver";;
     esac
