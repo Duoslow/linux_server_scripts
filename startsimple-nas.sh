@@ -114,11 +114,22 @@ sudo apt install jellyfin -y
 sudo systemctl restart jellyfin
 }
 # ---------------------------------------------------------------------------------------------------------------------
+#netdata
+# ---------------------------------------------------------------------------------------------------------------------
+function netw{
+ip="$(hostname -I | awk '{ print $1 }')"
+echo -e "Netdata \e[32mkuruldu\e[39m buradan(\e[91m$ip:19999\e[39m)bağlanabilirsin"
+
+}
+
+# ---------------------------------------------------------------------------------------------------------------------
 #Netdata
 while true; do
     read -p "Netdata kurulsun mu ?" yn
     case $yn in
-        [Yy]* ) bash <(curl -Ss https://my-netdata.io/kickstart.sh) --non-interactive; break;;
+        [Yy]* ) bash <(curl -Ss https://my-netdata.io/kickstart.sh) --non-interactive 
+eval "netw ."
+; break;;
         [Nn]* ) echo "Netdata Kurulmuyacak!" ; break ;;
         * ) echo "Y veya N ile cevap ver";;
     esac
