@@ -81,7 +81,7 @@ done
 while true; do
     read -p "Jellyfin kurulsun mu ?" yn
     case $yn in
-        [Yy]* ) jelly; break;;
+        [Yy]* ) jelly ; break;;
         [Nn]* ) echo "Jellyfin Kurulmuyacak!" ; break ;;
         * ) echo "Y veya N ile cevap ver";;
     esac
@@ -91,7 +91,7 @@ done
 while true; do
     read -p "samba kurulsun mu ?" yn
     case $yn in
-        [Yy]* ) sambaconf; break;;
+        [Yy]* ) sambaconf ; break;;
         [Nn]* ) echo "samba Kurulmuyacak!" ; break ;;
         * ) echo "Y veya N ile cevap ver";;
     esac
@@ -99,7 +99,7 @@ done
 # ---------------------------------------------------------------------------------------------------------------------
 #FONKSİYONLAR
 # ---------------------------------------------------------------------------------------------------------------------
-function sambaconf()
+function sambaconf ()
 {
 sudo apt-get -y install samba
 sudo cat <<EOF>>/etc/samba/smb.conf
@@ -127,7 +127,7 @@ echo -e "samba \e[32mkuruldu\e[39m buradan(\e[91m$ip/home-nas\e[39m)bağlanabili
 }
 # ---------------------------------------------------------------------------------------------------------------------
 #jellyfin
-function jelly()
+function jelly ()
 {
 sudo apt install apt-transport-https -y
 sudo add-apt-repository universe -y
