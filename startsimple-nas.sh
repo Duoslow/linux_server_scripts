@@ -24,10 +24,10 @@ sudo mkdir -p /root/.config/aria2
 sudo touch /usr/bin/tmuxsc.sh
 sudo touch /etc/systemd/system/tmuxaria2.service
 sudo touch /root/.config/aria2/aria2.conf
-sudo chmod -R 777 /usr/bin/tmuxsc.sh
-sudo chmod -R 777 /etc/systemd/system/tmuxaria2.service
-sudo chmod -R 777 /root
-sudo chmod -R 777 /root/.config/aria2/aria2.conf
+sudo chmod  777 /usr/bin/tmuxsc.sh
+sudo chmod  777 /etc/systemd/system/tmuxaria2.service
+sudo chmod  777 /root
+sudo chmod  777 /root/.config/aria2/aria2.conf
 # ---------------------------------------------------------------------------------------------------------------------
 #aria2 config oluşturma
 sudo -s cat <<EOF>/root/.config/aria2/aria2.conf
