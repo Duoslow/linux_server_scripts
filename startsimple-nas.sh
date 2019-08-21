@@ -70,6 +70,7 @@ EOF
 sudo chmod 777 /root/.config/aria2/aria2.conf
 sudo chmod 777 /usr/bin/tmuxsc.sh
 sudo chmod 777 /etc/systemd/system/tmuxaria2.service
+sudo systemctl enable tmuxaria2.service  
 
 # ---------------------------------------------------------------------------------------------------------------------
 #FONKSİYONLAR
