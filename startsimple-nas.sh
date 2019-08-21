@@ -1,13 +1,13 @@
 #!/bin/bash
-read -p "Merhaba $USER Kurulum minimum 5-10dk sürecek kuruluma devam etmek istiyor musun ? (Y/N) " -n 1 -r
+read -p "Welcome $USER are you sure the installing? (Y/N) " -n 1 -r
 echo    # (optional) move to a new line
 if [[ ! $REPLY =~ ^[Yy]$ ]]
 then
     exit 1
 fi
-
-#basit kurulumlar
-
+# ---------------------------------------------------------------------------------------------------------------------
+#simple
+# ---------------------------------------------------------------------------------------------------------------------
 sudo apt-add-repository ppa:ondrej/php -y > /dev/null
 sudo apt-get update  -qq > /dev/null
 sudo apt-get upgrade -y -qq > /dev/null
@@ -29,7 +29,8 @@ sudo chmod  777 /etc/systemd/system/tmuxaria2.service
 sudo chmod  777 /root
 sudo chmod  777 /root/.config/aria2/aria2.conf
 # ---------------------------------------------------------------------------------------------------------------------
-#aria2 config oluşturma
+#aria2 config
+# ---------------------------------------------------------------------------------------------------------------------
 sudo -s cat <<EOF>/root/.config/aria2/aria2.conf
 continue=true
 daemon=true
@@ -41,12 +42,14 @@ split=16
 EOF
 # ---------------------------------------------------------------------------------------------------------------------
 #aria2 tmux scripti
+# ---------------------------------------------------------------------------------------------------------------------
 sudo -s cat <<EOF>/usr/bin/tmuxsc.sh
 #!/bin/bash
 tmux new-session -d -s sa31 'aria2c --enable-rpc --rpc-listen-all --continue=true --force-save=true'
 EOF
 # ---------------------------------------------------------------------------------------------------------------------
 #aria2 tmux service olusturma
+# ---------------------------------------------------------------------------------------------------------------------
 sudo -s cat <<EOF>/etc/systemd/system/tmuxaria2.service
 [Unit]
 Description=tmuxariascript
@@ -63,12 +66,11 @@ WantedBy=default.target
 EOF
 # ---------------------------------------------------------------------------------------------------------------------
 #izinler
+# ---------------------------------------------------------------------------------------------------------------------
 sudo chmod 777 /root/.config/aria2/aria2.conf
 sudo chmod 777 /usr/bin/tmuxsc.sh
 sudo chmod 777 /etc/systemd/system/tmuxaria2.service
-# ---------------------------------------------------------------------------------------------------------------------
-# KULLANICI ONAYLARI
-# ---------------------------------------------------------------------------------------------------------------------
+
 # ---------------------------------------------------------------------------------------------------------------------
 #FONKSİYONLAR
 # ---------------------------------------------------------------------------------------------------------------------
@@ -88,17 +90,17 @@ sudo service smbd restart
 while [ "$stat" != "Active: active" ];
 do
 stat="$(systemctl status smbd --output=short-monotonic | grep -Po "Active: active")"
-        echo "servis ile bağlantı kuruluyor..."
+        echo "connecting to smbd.service..."
         sleep 1
         if [[ "$stat" == "Active: active" ]]; then
-echo "servis ile bağlantı kuruldu."
+echo "smbd.service connected"
 break
         fi
 done
-echo "Samba giriş bilgileri için $USER kullanıcısı için şifre girin"
+echo "Samba $USER Password :"
 sudo smbpasswd -a $USER
 ip="$(hostname -I | awk '{ print $1 }')"
-echo -e "samba \e[32mkuruldu\e[39m buradan(\e[91m$ip/home-nas\e[39m)bağlanabilirsin"
+echo -e "samba \e[32mInstalled\e[39m(\e[91m$ip/home-nas\e[39m)"
 }
 # ---------------------------------------------------------------------------------------------------------------------
 #jellyfin
@@ -114,43 +116,80 @@ sudo apt install jellyfin -y
 sudo systemctl restart jellyfin
 }
 # ---------------------------------------------------------------------------------------------------------------------
+#motd
+# ---------------------------------------------------------------------------------------------------------------------
+function motd ()
+{
+sudo chmod -x /etc/update-motd.d/*
+sudo apt install inxi screenfetch ansiweather
+read -p 'Location :' location
+sudo -s cat <<EOF>/etc/update-motd.d/01-custom
+#!/bin/sh
+echo "GENERAL SYSTEM INFORMATION"
+/usr/bin/screenfetch
+echo
+echo "SYSTEM DISK USAGE"
+export TERM=xterm; inxi -D
+echo
+echo "CURRENT WEATHER AT THE LOCATION"
+# Show weather information. Change the city name to fit your location
+ansiweather -l $location
+EOF
+}
+# ---------------------------------------------------------------------------------------------------------------------
 #netdata
 # ---------------------------------------------------------------------------------------------------------------------
 function netw{
 ip="$(hostname -I | awk '{ print $1 }')"
-echo -e "Netdata \e[32mkuruldu\e[39m buradan(\e[91m$ip:19999\e[39m)bağlanabilirsin"
+echo -e "Netdata \e[32mInstalled\e[39m(\e[91m$ip:19999\e[39m)"
 
 }
-
+# ---------------------------------------------------------------------------------------------------------------------
+#user
+# ---------------------------------------------------------------------------------------------------------------------
 # ---------------------------------------------------------------------------------------------------------------------
 #Netdata
+# ---------------------------------------------------------------------------------------------------------------------
 while true; do
-    read -p "Netdata kurulsun mu ?" yn
+    read -p "Install Netdata ?" yn
     case $yn in
         [Yy]* ) bash <(curl -Ss https://my-netdata.io/kickstart.sh) --non-interactive 
 eval "netw ."
 ; break;;
-        [Nn]* ) echo "Netdata Kurulmuyacak!" ; break ;;
-        * ) echo "Y veya N ile cevap ver";;
+        [Nn]* ) echo "Not installing: Netdata" ; break ;;
+        * ) echo "Y/N";;
     esac
 done
 # ---------------------------------------------------------------------------------------------------------------------
 #Jellyfin
+# ---------------------------------------------------------------------------------------------------------------------
 while true; do
-    read -p "Jellyfin kurulsun mu ?" yn
+    read -p "Install Jellyfin ?" yn
     case $yn in
         [Yy]* ) eval "jelly ."; break;;
-        [Nn]* ) echo "Jellyfin Kurulmuyacak!" ; break ;;
-        * ) echo "Y veya N ile cevap ver";;
+        [Nn]* ) echo "Not installing: Jellyfin" ; break ;;
+        * ) echo "Y/N";;
     esac
 done
 # ---------------------------------------------------------------------------------------------------------------------
-#Samba Kurulumu
+#Samba
+# ---------------------------------------------------------------------------------------------------------------------
 while true; do
-    read -p "samba kurulsun mu ?" yn
+    read -p "Install Samba ?" yn
     case $yn in
         [Yy]* ) eval "sambaconf ." ; break;;
-        [Nn]* ) echo "samba Kurulmuyacak!" ; break ;;
-        * ) echo "Y veya N ile cevap ver";;
+        [Nn]* ) echo "Not installing: samba" ; break ;;
+        * ) echo "Y/N";;
+    esac
+done
+# ---------------------------------------------------------------------------------------------------------------------
+#motd
+# ---------------------------------------------------------------------------------------------------------------------
+while true; do
+    read -p "change motd ?" yn
+    case $yn in
+        [Yy]* ) eval "motd ." ; break;;
+        [Nn]* ) echo "Not changing: motd" ; break ;;
+        * ) echo "Y/N";;
     esac
 done
