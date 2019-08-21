@@ -10,7 +10,7 @@ function display_output(){
 	dialog --backtitle "starter script by ST4RDUST" --title "${t}" --clear --msgbox "$(<$OUTPUT)" ${h} ${w}
 }
 function web(){
-
+echo "$ROOT_USER" >$OUTPUT
 }
 
 function home(){
