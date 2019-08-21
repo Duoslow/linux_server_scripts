@@ -9,19 +9,8 @@ function display_output(){
 	local t=${3-Output} 	# box title 
 	dialog --backtitle "starter script by ST4RDUST" --title "${t}" --clear --msgbox "$(<$OUTPUT)" ${h} ${w}
 }
-function web(){
-echo "$ROOT_USER" >$OUTPUT
-}
 
-function home(){
 
-	display_output 13 25 "Home Server"
-}
-
-function basic(){
-	echo "$ROOT_USER" >$OUTPUT
-	display_output 13 25 "Basic Server"
-}
 while true
 do
 
