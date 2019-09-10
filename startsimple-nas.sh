@@ -142,7 +142,7 @@ EOF
 # ---------------------------------------------------------------------------------------------------------------------
 function netw{
 
-ip="$(hostname -I | awk '{ print $1 }')"
+ip = " $(hostname -I | awk '{ print $1 }') "
 echo -e "Netdata \e[32mInstalled\e[39m(\e[91m$ip/home-nas\e[39m)"
 
 }
