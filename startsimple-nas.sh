@@ -150,8 +150,7 @@ EOF
 while true; do
     read -p "Install Netdata ?" yn
     case $yn in
-        [Yy]* ) bash <(curl -Ss https://my-netdata.io/kickstart.sh) --non-interactive 
-; break;;
+        [Yy]* ) bash <(curl -Ss https://my-netdata.io/kickstart.sh) --non-interactive ; break ;;
         [Nn]* ) echo "Not installing: Netdata" ; break ;;
         * ) echo "Y/N";;
     esac
