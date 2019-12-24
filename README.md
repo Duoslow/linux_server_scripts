@@ -1,4 +1,4 @@
-###Scripts
+#Scripts
 
 bash <(curl -Ss https://uguryavas.github.io/starterscript/starter.sh)  
 bash <(curl -Ss https://uguryavas.github.io/starterscript/startsimple-nas.sh)  
