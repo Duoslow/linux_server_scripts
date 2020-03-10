@@ -26,7 +26,7 @@ EOF
 #aria2 tmux script
 sudo -s cat <<EOF>/etc/tmuxsc.sh
 #!/bin/bash
-tmux new-session -d -s sa31 'aria2c --enable-rpc --rpc-listen-all --continue=true --force-save=true'
+tmux new-session -d -s sa 'aria2c --enable-rpc --rpc-listen-all --continue=true --force-save=true'
 EOF
 #aria2 tmux service 
 sudo -s cat <<EOF>/etc/systemd/system/tmuxaria2.service
